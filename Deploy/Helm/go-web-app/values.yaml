@@ -1,0 +1,30 @@
+replicaCount: 1
+
+image:
+  repository: 'fittske/go-web-app'
+  tag: latest
+  pullPolicy: IfNotPresent
+
+resources:
+  requests:
+    memory: "50Mi"
+    cpu: "50m"
+  limits:
+    memory: "256Mi"
+    cpu: "100m"
+
+service:
+  type: LoadBalancer
+  port: 80
+  targetPort: 8000
+  protocol: TCP
+  name: http 
+  
+serviceAccount:
+  create: false
+
+ingress:
+  enabled: false
+
+autoscaling:
+  enabled: false
